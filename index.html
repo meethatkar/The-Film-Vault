@@ -22,7 +22,7 @@
         </form>
     </nav>
     <main class="py-5 relative">
-        <div id="display-wrapper" class="min-h-[75vh] w-10/12 [box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.3)] mx-auto overflow-x-hidden relative z-10 opacity-0 flex flex-col-reverse md:flex-row md:justify-between md:items-center md:w-8/12 md:[box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.1)] md:rounded-xl md:gap-10">
+        <div id="display-wrapper" class="min-h-[75vh] w-10/12 [box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.3)] mx-auto overflow-x-hidden relative z-10 opacity-0 flex flex-col-reverse md:flex-row md:justify-between md:items-center md:w-8/12 md:[box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.1)] md:rounded-xl md:gap-10 transition-all duration-300 ease-in-out">
             <div id="details" class="h-1/2 w-full px-5 py-3 flex flex-col items-start gap-3 md:w-1/2 md:h-full">
                 <h1 id="title" class="text-[1.5rem] md:text-[2.3rem]"> Title: Special ops</h1>
                 <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="rating">
@@ -56,13 +56,13 @@
                 <div id="msg" class="hidden text-3xl text-red-500 text-center">Unable to load image</div>
             </div>
         </div>
-        <div id="not-found" class="flex justify-center text-[1.5rem] opacity-0 absolute mx-auto w-full top-10 md:text-[2rem]">
+        <div id="not-found" class="flex justify-center text-[1.5rem] opacity-0 absolute mx-auto w-full top-10 md:text-[2rem] transition-all duration-300 ease-in-out">
             <h3> 🤷‍♂️ No Movie found ! </h3>
         </div>
-        <div id="start-div" class="flex justify-center text-[1rem] font-medium absolute mx-auto w-full top-10 opacity-100 md:text-[2rem]">
+        <div id="start-div" class="flex justify-center text-[1rem] font-medium absolute mx-auto w-full top-10 opacity-100 md:text-[2rem] transition-all duration-300 ease-in-out">
             <h3> | Type a movie title to explore its details | </h3>
         </div>
-        <div id="loader" class="absolute z-0 inset-0 bg-white opacity-0 flex md:items-center justify-center">
+        <div id="loader" class="absolute z-0 inset-0 bg-white opacity-0 flex md:items-center justify-center transition-all duration-300 ease-in-out">
             <video src="https://cdnl.iconscout.com/lottie/premium/preview-watermark/camera-shutter-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--aperture-lens-photography-media-pack-entertainment-icons-5583552.mp4" autoplay loop muted class="h-full w-auto"></video>
         </div>
     </main>
