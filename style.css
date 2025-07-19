@@ -5,6 +5,10 @@ body::-webkit-scrollbar{
     display: none;
 }
 
+nav,main,#cursor,#cursor-blur{
+    cursor: pointer;
+}
+
 
 #span-div span{
     padding: 0.8% 3%;

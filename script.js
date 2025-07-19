@@ -17,6 +17,7 @@ formDiv.addEventListener("submit", (event) => {
 
 async function callApi(movieName) {
     document.querySelector("#display-wrapper").style.opacity = "0";
+    document.querySelector("#start-div").style.opacity = "0";
     document.querySelector("#loader").style.opacity = "1";
     var apiData = await fetch(api_url + movieName + "&apikey=" + api_key)
         .then(async (res) => {
@@ -69,12 +70,17 @@ function extractData(apiData) {
     }
     else {
         console.log("API DATA: ", apiData);
-        document.querySelector("img").src = apiData.Poster;
-        document.querySelector("img").onload = () => {
+        const imgUrl = apiData.Poster;
+        if(apiData.Poster === "N/A" || !apiData.Poster.endsWith(".jps")){
+                document.querySelector("#msg").style.display = "block";
+                renderDetails();
+        }
+        else{
+            document.querySelector("img").onload = () => {
             renderDetails();
         }
+        }
         // if(!document.querySelector("img")){
-        //     document.querySelector("#msg").style.display = "block";
         //     renderDetails();
         // }
     }
@@ -101,3 +107,44 @@ function extractData(apiData) {
         }, 2000);
     }
 }
+var cursor = document.querySelector("#cursor");
+var cursor_blur = document.querySelector("#cursor-blur");
+
+// CURSOR
+    window.addEventListener("load",()=>{
+        // alert("loaded");
+        document.querySelector("body").addEventListener("mousemove",(dets)=>{
+            // console.log(dets);
+            
+            cursor.style.top = dets.y+(-5)+"px";
+            cursor.style.left = dets.x+(-7)+"px";
+            cursor_blur.style.top = dets.y+(-17)+"px";
+            cursor_blur.style.left = dets.x+(-17)+"px";
+        })
+    })
+
+    let initialPos = `M 10 20 Q 300 20 590 20`;
+    let finalPos = `M 10 20 Q 300 20 590 20`;
+
+    window.addEventListener("DOMContentLoaded",()=>{
+        document.querySelector("svg").addEventListener("mousemove",(dets)=>{
+            // console.log(dets);
+            
+            cursor.style.display = "none";
+            cursor_blur.style.display = "none";
+            initialPos = `M 10 20 Q ${dets.layerX} ${dets.layerY} 590 20`
+            gsap.to("svg path",{
+                attr: {d:initialPos},
+                duration:0.2,
+            })            
+        })
+        document.querySelector("svg").addEventListener("mouseleave",(dets)=>{
+            cursor.style.display = "block";
+            cursor_blur.style.display = "block";
+            gsap.to("svg path",{
+                attr: {d:finalPos},
+                duration:1,
+                ease:"elastic.out(1,0.5)",
+            })
+        })
+    })

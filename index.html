@@ -14,24 +14,33 @@
 </head>
 
 <body class="h-screen w-screen relative font-[Solway] overflow-x-hidden">
-    <nav class="min-h-[15vh] w-screen px-5 py-4 bg-gray-800 text-white flex flex-col items-center justify-center gap-3 md:flex-row md:min-h-[10vh] md:justify-between md:px-20">
-        <h1 class="text-[1.7rem] underline text-center md:text-[2.5rem]" style="font-family: 'Vast Shadow';"> The Film Vault </h1>
+    <div id="cursor"
+        class="hidden md:block fixed top-0 left-0 h-[15px] w-[15px]  rounded-full z-45 bg-[#FDC700]/95 transition-all ease-linear duration-75">
+        <div id="cursor-blur"
+            class="hidden md:block fixed top-0 left-0 h-[50px] w-[50px] blur-xl rounded-full z-50 bg-[#FDC700]/70 transition-all ease-linear duration-75">
+        </div>
+    </div>
+    <nav
+        class="min-h-[15vh] w-screen px-5 py-4 bg-gray-800 text-white flex flex-col items-center justify-center gap-3 md:flex-row md:min-h-[10vh] md:justify-between md:px-20">
+        <h1 class="text-[1.7rem] underline text-center md:text-[2.5rem]" style="font-family: 'Vast Shadow';"> The Film
+            Vault </h1>
         <form class="w-full flex text-[1rem] md:w-fit md:text-[1.3rem]" id="input-Form">
-            <input type="text" placeholder="Enter Movie name" class="text-center bg-white text-black font-medium mr-3">
-            <button class="bg-yellow-400 text-black font-medium px-4 py-2"> Search </button>
+            <input type="text" placeholder="Enter Movie name" class="text-center bg-white text-black font-medium mr-3 relative z-70">
+            <button class="bg-yellow-400 text-black font-medium px-4 py-2 relative z-70"> Search </button>
         </form>
     </nav>
     <main class="py-5 relative">
-        <div id="display-wrapper" class="min-h-[75vh] w-10/12 [box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.3)] mx-auto overflow-x-hidden relative z-10 opacity-0 flex flex-col-reverse md:flex-row md:justify-between md:items-center md:w-8/12 md:[box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.1)] md:rounded-xl md:gap-10 transition-all duration-300 ease-in-out">
+        <div id="display-wrapper"
+            class="min-h-[75vh] w-10/12 [box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.3)] mx-auto overflow-x-hidden relative z-10 opacity-0 flex flex-col-reverse md:flex-row md:justify-between md:items-center md:w-8/12 md:[box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.1)] md:rounded-xl md:gap-10 transition-all duration-300 ease-in-out">
             <div id="details" class="h-1/2 w-full px-5 py-3 flex flex-col items-start gap-3 md:w-1/2 md:h-full">
                 <h1 id="title" class="text-[1.5rem] md:text-[2.3rem]"> Title: Special ops</h1>
                 <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="rating">
-                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]">IMDB rating:  </h2>
-                    <p class="text-gray-500">  </p>
+                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]">IMDB rating: </h2>
+                    <p class="text-gray-500"> </p>
                 </div>
                 <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="box-office">
                     <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]"> Box office:</h2>
-                    <p class="text-gray-500">  </p>
+                    <p class="text-gray-500"> </p>
                 </div>
                 <div class="dets text-sm flex items-start justify-start gap-0.5 flex-col" id="date">
                     <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]"> Released: </h2>
@@ -43,7 +52,7 @@
                 </div>
                 <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="plot">
                     <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]"> plot: </h2>
-                    <p class="text-gray-500">   </p>
+                    <p class="text-gray-500"> </p>
                 </div>
                 <div class="dets text-sm flex flex-col items-start justify-start  gap-0.5" id="genre">
                     <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]">Tags: </h2>
@@ -51,21 +60,33 @@
                     </div>
                 </div>
             </div>
-            <div id="img-wrapper" class="h-1/2 w-full md:w-1/2 md:h-full md:flex md:justify-end md:pr-8">
-                <img src="https://m.media-amazon.com/images/M/MV5BNTQxMmVlMTItMGFjYi00MTc2LWE5MzMtYjFhZWJmZGY0MTY5XkEyXkFqcGc@._V1_SX300.jpg" alt="" class="h-full w-full object-cover md:w-8/12 ">
+            <div id="img-wrapper" class="h-1/2 w-full md:w-1/2 md:h-full md:flex md:justify-end md:pr-8 md:flex-col md:items-center">
+                <img src=""
+                    alt="" class="h-full w-full object-cover md:w-8/12 ">
                 <div id="msg" class="hidden text-3xl text-red-500 text-center">Unable to load image</div>
             </div>
         </div>
-        <div id="not-found" class="flex justify-center text-[1.5rem] opacity-0 absolute mx-auto w-full top-10 md:text-[2rem] transition-all duration-300 ease-in-out">
+        <div id="not-found"
+            class="flex justify-center text-[1.5rem] opacity-0 absolute mx-auto w-full top-10 md:text-[2rem] transition-all duration-300 ease-in-out">
             <h3> 🤷‍♂️ No Movie found ! </h3>
         </div>
-        <div id="start-div" class="flex justify-center text-[1rem] font-medium absolute mx-auto w-full top-10 opacity-100 md:text-[2rem] transition-all duration-300 ease-in-out">
+        <div id="start-div"
+            class="flex flex-col items-center justify-center text-[1rem] font-medium absolute mx-auto w-full top-10 opacity-100 md:text-[2rem] transition-all duration-300 ease-in-out">
             <h3> | Type a movie title to explore its details | </h3>
+            <svg xmlns="http://www.w3.org/2000/svg" class=" h-[50px] w-[600px] hidden md:block relative z-60">
+                <path d="M 10 20 Q 300 20 590 20" stroke="black" fill="transparent" />
+            </svg>
+
         </div>
-        <div id="loader" class="absolute z-0 inset-0 bg-white opacity-0 flex md:items-center justify-center transition-all duration-300 ease-in-out">
-            <video src="https://cdnl.iconscout.com/lottie/premium/preview-watermark/camera-shutter-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--aperture-lens-photography-media-pack-entertainment-icons-5583552.mp4" autoplay loop muted class="h-full w-auto"></video>
+        <div id="loader"
+            class="absolute z-0 inset-0 bg-white opacity-0 flex flex-col items-center justify-center transition-all duration-300 ease-in-out">
+            <video
+                src="https://cdnl.iconscout.com/lottie/premium/preview-watermark/camera-shutter-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--aperture-lens-photography-media-pack-entertainment-icons-5583552.mp4"
+                autoplay loop muted class="h-10/12 w-auto"></video>
+                <h3 class="text-[1rem] md:text-[2rem]"> Loading... </h3>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
 
