@@ -1,13 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The-Film-Vault</title>
+    <title>movie searcher</title>
     <link rel="stylesheet" href="output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=Vast+Shadow&display=swap"
+        rel="stylesheet">
 </head>
-<body>
 
+<body class="h-screen w-screen relative font-[Solway] overflow-x-hidden">
+    <nav class="min-h-[15vh] w-screen px-5 py-4 bg-gray-800 text-white flex flex-col items-center justify-center gap-3 md:flex-row md:min-h-[10vh] md:justify-between md:px-20">
+        <h1 class="text-[1.7rem] underline text-center md:text-[2.5rem]" style="font-family: 'Vast Shadow';"> The Film Vault </h1>
+        <form class="w-full flex text-[1rem] md:w-fit md:text-[1.3rem]" id="input-Form">
+            <input type="text" placeholder="Enter Movie name" class="text-center bg-white text-black font-medium mr-3">
+            <button class="bg-yellow-400 text-black font-medium px-4 py-2"> Search </button>
+        </form>
+    </nav>
+    <main class="py-5 relative">
+        <div id="display-wrapper" class="min-h-[75vh] w-10/12 [box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.3)] mx-auto overflow-x-hidden relative z-10 opacity-0 flex flex-col-reverse md:flex-row md:justify-between md:items-center md:w-8/12 md:[box-shadow:2px_5px_50px_10px_rgb(1,1,1,0.1)] md:rounded-xl md:gap-10">
+            <div id="details" class="h-1/2 w-full px-5 py-3 flex flex-col items-start gap-3 md:w-1/2 md:h-full">
+                <h1 id="title" class="text-[1.5rem] md:text-[2.3rem]"> Title: Special ops</h1>
+                <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="rating">
+                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]">IMDB rating:  </h2>
+                    <p class="text-gray-500">  </p>
+                </div>
+                <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="box-office">
+                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]"> Box office:</h2>
+                    <p class="text-gray-500">  </p>
+                </div>
+                <div class="dets text-sm flex items-start justify-start gap-0.5 flex-col" id="date">
+                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]"> Released: </h2>
+                    <p class="text-gray-500"> </p>
+                </div>
+                <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="actor">
+                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]"> Actors: </h2>
+                    <p class="text-gray-500"> </p>
+                </div>
+                <div class="dets text-sm  flex items-start justify-start gap-0.5 flex-col" id="plot">
+                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]"> plot: </h2>
+                    <p class="text-gray-500">   </p>
+                </div>
+                <div class="dets text-sm flex flex-col items-start justify-start  gap-0.5" id="genre">
+                    <h2 class="text-gray-800 text-[0.95rem] md:text-[1.2rem]">Tags: </h2>
+                    <div id="span-div" class="flex flex-row flex-wrap gap-2">
+                    </div>
+                </div>
+            </div>
+            <div id="img-wrapper" class="h-1/2 w-full md:w-1/2 md:h-full md:flex md:justify-end md:pr-8">
+                <img src="https://m.media-amazon.com/images/M/MV5BNTQxMmVlMTItMGFjYi00MTc2LWE5MzMtYjFhZWJmZGY0MTY5XkEyXkFqcGc@._V1_SX300.jpg" alt="" class="h-full w-full object-cover md:w-8/12 ">
+                <div id="msg" class="hidden text-3xl text-red-500 text-center">Unable to load image</div>
+            </div>
+        </div>
+        <div id="not-found" class="flex justify-center text-[1.5rem] opacity-0 absolute mx-auto w-full top-10 md:text-[2rem]">
+            <h3> 🤷‍♂️ No Movie found ! </h3>
+        </div>
+        <div id="start-div" class="flex justify-center text-[1rem] font-medium absolute mx-auto w-full top-10 opacity-100 md:text-[2rem]">
+            <h3> | Type a movie title to explore its details | </h3>
+        </div>
+        <div id="loader" class="absolute z-0 inset-0 bg-white opacity-0 flex md:items-center justify-center">
+            <video src="https://cdnl.iconscout.com/lottie/premium/preview-watermark/camera-shutter-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--aperture-lens-photography-media-pack-entertainment-icons-5583552.mp4" autoplay loop muted class="h-full w-auto"></video>
+        </div>
+    </main>
     <script src="script.js"></script>
 </body>
+
 </html>

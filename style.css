@@ -1,1 +1,30 @@
 @import "tailwindcss";
+@tailwind utilities;
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+
+#span-div span{
+    padding: 0.8% 3%;
+    background-color: #E9C036;
+    border-radius: 10px;
+    color: whitesmoke;
+    font-weight: 500;
+    text-shadow: 0.5px 0.5px 1px black;
+    font-size: 0.93rem;
+}
+
+/* .dets{
+@apply text-sm dets flex items-start justify-start gap-5 text-gray-700;
+} */
+
+/* .dets p{ */
+    /* @apply text-gray-200 text-3xl; */
+/* } */
+
+/* .dets p{
+    font-size: 1rem;
+    line-height: 1.625;
+} */
