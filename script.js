@@ -12,8 +12,8 @@ formDiv.addEventListener("submit", async (event) => {
     movieName = document.querySelector("input").value;
     movieName = movieName.replace(/\s/g, "+");
     const response = await fetch("/.netlify/functions/api_call")
-    .then(res => res.json());
-    console.log(JSON.stringify(response));
+    .then(res => res);
+    console.log(response);
     
     // callApi(movieName);
 })
