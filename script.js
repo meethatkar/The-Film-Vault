@@ -1,7 +1,3 @@
-// API key = f5ea5c37
-
-let api_url = "http://www.omdbapi.com/?t=";
-let api_key = "f5ea5c37";
 let movieName = "";
 
 var formDiv = document.querySelector("#input-Form");
@@ -11,54 +7,62 @@ formDiv.addEventListener("submit", async (event) => {
     event.preventDefault();
     movieName = document.querySelector("input").value;
     movieName = movieName.replace(/\s/g, "+");
-    const response = await fetch("/.netlify/functions/api_call")
-    .then(res => res);
-    console.log(response);
+    document.querySelector("#display-wrapper").style.opacity = "0";
+    document.querySelector("#start-div").style.opacity = "0";
+    document.querySelector("#loader").style.opacity = "1";
+    document.querySelector("#loader video").play();
+
+    const response = await fetch("/.netlify/functions/api_call",{
+        method: 'POST',
+        body: JSON.stringify({
+            movieName: movieName,
+        })
+    })
+    .then(async res => await res.json());
+    // console.log(response);
     
     // callApi(movieName);
+    extractData(response);
 })
 
 
 async function callApi(movieName) {
-    document.querySelector("#display-wrapper").style.opacity = "0";
-    document.querySelector("#start-div").style.opacity = "0";
-    document.querySelector("#loader").style.opacity = "1";
-    var apiData = await fetch(api_url + movieName + "&apikey=" + api_key)
-        .then(async (res) => {
-            if (res.ok) {
-                // console.log("res: ", res);
+    // var apiData = await fetch(api_url + movieName + "&apikey=" + api_key)
+    //     .then(async (res) => {
+    //         if (res.ok) {
+    //             // console.log("res: ", res);
 
-                let Api_data = await res.json();
-                console.log(Api_data);
+    //             let Api_data = await res.json();
+    //             console.log(Api_data);
 
-                return Api_data;
-            }
-            else {
-                throw { status: res.status };
-            }
-        })
-        .catch((error) => {
-            if (error.status == 404) {
-                console.log("NotFound");
-            }
-            else if (error.status == 500) {
-                console.log("Server Error");
-            }
-            // NO INTERNET CONNECTION
-            else if (!navigator.onLine) {
-                console.log("NO INTERNET CONNECTION");
+    //             return Api_data;
+    //         }
+    //         else {
+    //             throw { status: res.status };
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         if (error.status == 404) {
+    //             console.log("NotFound");
+    //         }
+    //         else if (error.status == 500) {
+    //             console.log("Server Error");
+    //         }
+    //         // NO INTERNET CONNECTION
+    //         else if (!navigator.onLine) {
+    //             console.log("NO INTERNET CONNECTION");
 
-            }
-            // JSON ERROR PARSING OR SYNTAX
-            else if (error instanceof SyntaxError) {
-                console.log("JSON ERROR PARSING OR SYNTAX");
-            }
-            // TYPE OR CORS ERROR
-            else if (error instanceof TypeError) {
-                console.log("TYPE OR CORS ERROR");
-            }
+    //         }
+    //         // JSON ERROR PARSING OR SYNTAX
+    //         else if (error instanceof SyntaxError) {
+    //             console.log("JSON ERROR PARSING OR SYNTAX");
+    //         }
+    //         // TYPE OR CORS ERROR
+    //         else if (error instanceof TypeError) {
+    //             console.log("TYPE OR CORS ERROR");
+    //         }
 
-        })
+    //     })
     return extractData(apiData);
 }
 
@@ -68,6 +72,7 @@ function extractData(apiData) {
         setTimeout(() => {
             document.querySelector("#not-found").style.opacity = "1";
             document.querySelector("#loader").style.opacity = "0";
+            document.querySelector("#loader video").pause();
             document.querySelector("#start-div").style.opacity = "0";
             document.querySelector("#display-wrapper").style.opacity = "0";
         }, 2000);
@@ -110,7 +115,7 @@ function extractData(apiData) {
         })
         setTimeout(() => {
             document.querySelector("#loader").style.opacity = "0";
-            document.querySelector("#loader video").autoplay = false;
+            document.querySelector("#loader video").pause();
             document.querySelector("#start-div").style.opacity = "0";
             document.querySelector("#display-wrapper").style.opacity = "1";
         }, 2000);
