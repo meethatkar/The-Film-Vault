@@ -6,12 +6,16 @@ let movieName = "";
 
 var formDiv = document.querySelector("#input-Form");
 
-formDiv.addEventListener("submit", (event) => {
+formDiv.addEventListener("submit", async (event) => {
     // alert("fomr clicked");
     event.preventDefault();
     movieName = document.querySelector("input").value;
     movieName = movieName.replace(/\s/g, "+");
-    callApi(movieName);
+    const response = await fetch("/.netlify/functions/api_call")
+    .then(res => res.json());
+    console.log(JSON.stringify(response));
+    
+    // callApi(movieName);
 })
 
 
@@ -71,11 +75,16 @@ function extractData(apiData) {
     else {
         console.log("API DATA: ", apiData);
         const imgUrl = apiData.Poster;
-        if(apiData.Poster === "N/A" || !apiData.Poster.endsWith(".jps")){
+        console.log(imgUrl);
+        
+        if(imgUrl == "N/A" || !imgUrl.endsWith(".jpg")){
                 document.querySelector("#msg").style.display = "block";
                 renderDetails();
         }
         else{
+            // debugger;
+            // alert("onload")
+            document.querySelector("img").src = imgUrl;
             document.querySelector("img").onload = () => {
             renderDetails();
         }
@@ -111,7 +120,8 @@ var cursor = document.querySelector("#cursor");
 var cursor_blur = document.querySelector("#cursor-blur");
 
 // CURSOR
-    window.addEventListener("load",()=>{
+    if(window.innerWidth>768){
+        window.addEventListener("load",()=>{
         // alert("loaded");
         document.querySelector("body").addEventListener("mousemove",(dets)=>{
             // console.log(dets);
@@ -123,6 +133,7 @@ var cursor_blur = document.querySelector("#cursor-blur");
         })
     })
 
+    }
     let initialPos = `M 10 20 Q 300 20 590 20`;
     let finalPos = `M 10 20 Q 300 20 590 20`;
 
@@ -144,7 +155,7 @@ var cursor_blur = document.querySelector("#cursor-blur");
             gsap.to("svg path",{
                 attr: {d:finalPos},
                 duration:1,
-                ease:"elastic.out(1,0.5)",
+                ease:"elastic.out(1,0.2)",
             })
         })
     })
