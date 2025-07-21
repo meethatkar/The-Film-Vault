@@ -18,7 +18,16 @@ formDiv.addEventListener("submit", async (event) => {
             movieName: movieName,
         })
     })
-    .then(async res => await res.json());
+    .then(async res => {
+        try{
+            var res = await res.json();
+        }
+        catch{
+            alert("Unexpected JSON Error, Retry");
+            window.location.reload();
+        }
+        return res;
+    });
     // console.log(response);
     
     // callApi(movieName);
@@ -114,6 +123,7 @@ function extractData(apiData) {
             document.querySelector("#span-div").appendChild(spanDiv);
         })
         setTimeout(() => {
+            document.querySelector("#not-found").style.opacity = "0";
             document.querySelector("#loader").style.opacity = "0";
             document.querySelector("#loader video").pause();
             document.querySelector("#start-div").style.opacity = "0";
